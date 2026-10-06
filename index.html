@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
 :root {
+  color-scheme: light;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -22,32 +23,6 @@
   --line: #E5E8ED;
   --heat: #C2410C;
   --plate: #FFFFFF;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --bg: #11151B;
-    --ink: #E6EAF0;
-    --body: #CDD4DD;
-    --muted: #97A1AE;
-    --accent: #86B6EC;
-    --chip: #1A2636;
-    --line: #262F3B;
-    --heat: #FF8F52;
-    --plate: #F2F4F7;
-  }
-}
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: #11151B;
-  --ink: #E6EAF0;
-  --body: #CDD4DD;
-  --muted: #97A1AE;
-  --accent: #86B6EC;
-  --chip: #1A2636;
-  --line: #262F3B;
-  --heat: #FF8F52;
-  --plate: #F2F4F7;
 }
 
 * { box-sizing: border-box; }
@@ -277,11 +252,12 @@ var SITE = {
   // Newest first. Use "Mon YYYY" when you know the month.
   news: [
     { date: "2026", text: "<b>TopoFlow</b>, conditional flow matching for 2D and 3D topology optimisation, is under review at <i>CMAME</i>." },
+    { date: "2026", text: "Ranked <b>2nd in the department</b> in PhD coursework (CGPA 9.5/10), Applied Mechanics, IIT Delhi." },
     { date: "Jul 2025", text: "Started my <b>PhD</b> (direct) in the Department of Applied Mechanics, IIT Delhi." },
     { date: "Aug 2024", text: "Joined <b>IISc Bengaluru</b> as a PhD student in the Department of Design and Manufacturing." },
     { date: "2023", text: "Led the project that cut crankshaft rejections by <b>70%</b> at Hero MotoCorp, Halol." },
     { date: "Jul 2022", text: "Joined <b>Hero MotoCorp</b> as a Graduate Engineer Trainee." },
-    { date: "2022", text: "Graduated with a <b>B.Tech.</b> in Mechanical Engineering from NIT Durgapur, with department rank 2." },
+    { date: "2022", text: "Graduated with a <b>B.Tech.</b> in Mechanical Engineering from NIT Durgapur." },
     { date: "2021", text: "Technical Head, Powertrain, <b>Team NDORS</b> (SAE BAJA), NIT Durgapur." }
   ],
 
@@ -354,9 +330,9 @@ var SITE = {
   ],
 
   education: [
-    { when: "2025 – Present", head: "PhD (Direct), Applied Mechanics", sub: "Indian Institute of Technology Delhi", points: ["Advisor: Prof. Souvik Chakraborty. Thesis area: robust, reliable, sustainable and multimodal generative design.", "Coursework CGPA 9.5/10: optimization methods, reliability-based design optimization, finite element method, probabilistic machine learning for mechanics."] },
+    { when: "2025 – Present", head: "PhD (Direct), Applied Mechanics", sub: "Indian Institute of Technology Delhi", points: ["Advisor: Prof. Souvik Chakraborty. Thesis area: robust, reliable, sustainable and multimodal generative design.", "Coursework CGPA 9.5/10, department rank 2: optimization methods, reliability-based design optimization, finite element method, probabilistic machine learning for mechanics."] },
     { when: "Aug 2024 – Jul 2025", head: "PhD student (Research Training Programme), Design and Manufacturing", sub: "Indian Institute of Science, Bengaluru", points: ["Graduate coursework in solid mechanics, materials behaviour, manufacturing science and computational mathematics before moving to IIT Delhi."] },
-    { when: "2018 – 2022", head: "B.Tech., Mechanical Engineering", sub: "National Institute of Technology Durgapur", points: ["CGPA 8.24/10; department rank 2."] }
+    { when: "2018 – 2022", head: "B.Tech., Mechanical Engineering", sub: "National Institute of Technology Durgapur", points: ["CGPA 8.24/10."] }
   ],
 
   bio: [
