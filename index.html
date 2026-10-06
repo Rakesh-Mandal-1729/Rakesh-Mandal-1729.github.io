@@ -219,7 +219,7 @@ footer .copy { margin-left: auto; color: var(--muted); font-size: 12.5px; }
     <section data-view="publications" hidden>
       <h2 class="eyebrow">Publications</h2>
       <div id="pubs"></div>
-      <p class="note">* Equal contribution.</p>
+      <p class="note">* Equal contribution. † Corresponding author.</p>
     </section>
 
     <!-- Experience -->
@@ -302,7 +302,7 @@ var SITE = {
       title: "TopoFlow: conditional flow matching for topology optimisation in 2D and 3D",
       status: "Under review · CMAME",
       text: "One conditional flow-matching model handles both 2D image and 3D voxel design domains. A U-Net velocity field, conditioned through Fourier features and FiLM, turns noise into structures for a given load and material budget, without architectural changes between dimensions. Every generated design is checked by finite-element analysis.",
-      figs: [["1.008", "median compliance ratio vs. SIMP (2D)"], ["25–100×", "lower cost than SIMP (2D)"], ["96.5%", "of 3D designs within 10% of FEM reference"]],
+      figs: [["1.008", "median compliance ratio vs. SIMP (2D)"], ["25–100×", "lower cost than SIMP (2D)"], ["96.5%", "of 3D test cases with a connected design within 10% of FEM (best of 16)"], ["27–54×", "faster than SIMP in 3D"]],
       tech: "PyTorch · U-Net · FiLM · Fourier features · SIMP · finite-element verification",
       sampler: true
     }
@@ -324,7 +324,7 @@ var SITE = {
   publications: [
     {
       title: "A Conditional Flow-Matching Framework for Generative Topology Optimization in Two and Three Dimensions",
-      authors: "<b>Rakesh Mandal</b>*, Arya Prakash Padhi*, Rajdip Nayek, Agnimitra Dasgupta, Souvik Chakraborty",
+      authors: "<b>Rakesh Mandal</b>*†, Arya Prakash Padhi*, Agnimitra Dasgupta, Souvik Chakraborty†",
       venue: "Computer Methods in Applied Mechanics and Engineering",
       tag: "Journal · Under review",
       link: ""
