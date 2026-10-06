@@ -4,480 +4,482 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rakesh Mandal</title>
-<meta name="description" content="Rakesh Mandal, PhD scholar at IIT Delhi: generative AI that designs engineering parts which still work after they are manufactured.">
+<meta name="description" content="Rakesh Mandal, PhD scholar at IIT Delhi: generative AI for engineering design that holds up under manufacturing variation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
 :root {
-  --bg: #F4F6F9;
-  --surface: #FFFFFF;
-  --plate: #FFFFFF;
-  --ink: #121821;
-  --muted: #566172;
-  --rule: #D6DCE4;
-  --accent: #1F4E79;
-  --accent-soft: #E3ECF5;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --bg: #FFFFFF;
+  --ink: #1B2029;
+  --body: #2B303A;
+  --muted: #6A7280;
+  --accent: #1F5FA8;
+  --chip: #EAF1FA;
+  --line: #E5E8ED;
   --heat: #C2410C;
-  --plate-ink: #566172;
-  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --plate: #FFFFFF;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #0E131A;
-    --surface: #151C25;
-    --plate: #EEF1F5;
-    --ink: #E5EAF0;
-    --muted: #9AA5B4;
-    --rule: #2A3441;
-    --accent: #8DB9E6;
-    --accent-soft: #1B2A3B;
+    --bg: #11151B;
+    --ink: #E6EAF0;
+    --body: #CDD4DD;
+    --muted: #97A1AE;
+    --accent: #86B6EC;
+    --chip: #1A2636;
+    --line: #262F3B;
     --heat: #FF8F52;
+    --plate: #F2F4F7;
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #0E131A;
-  --surface: #151C25;
-  --plate: #EEF1F5;
-  --ink: #E5EAF0;
-  --muted: #9AA5B4;
-  --rule: #2A3441;
-  --accent: #8DB9E6;
-  --accent-soft: #1B2A3B;
+  --bg: #11151B;
+  --ink: #E6EAF0;
+  --body: #CDD4DD;
+  --muted: #97A1AE;
+  --accent: #86B6EC;
+  --chip: #1A2636;
+  --line: #262F3B;
   --heat: #FF8F52;
+  --plate: #F2F4F7;
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   background: var(--bg);
-  color: var(--ink);
-  font-family: var(--body);
-  font-size: 17px;
-  line-height: 1.6;
+  color: var(--body);
+  font-family: var(--serif);
+  font-size: 16.5px;
+  line-height: 1.62;
   -webkit-font-smoothing: antialiased;
 }
-.wrap {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding-inline: 24px;
-  padding-block: 0 64px;
-}
-a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { text-decoration-thickness: 2px; }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
-p { margin: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 32px; padding-block: 36px 64px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+p { margin: 0 0 1em; }
+.bio-text p, .item li { text-align: justify; hyphens: auto; }
 
-.label {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+/* masthead */
+.masthead { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+h1 { font-family: var(--sans); font-size: 30px; font-weight: 650; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 4px; }
+.role { font-family: var(--sans); font-size: 15px; color: var(--muted); margin: 0; }
+.threads { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.thread { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 78px; text-align: center; }
+.tile { width: 40px; height: 40px; border-radius: 10px; background: var(--chip); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.tile svg { width: 21px; height: 21px; }
+.thread span { font-family: var(--sans); font-size: 10.5px; line-height: 1.25; color: var(--muted); }
 
-/* ---------- top bar ---------- */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-block: 20px;
-  border-bottom: 1px solid var(--rule);
-}
-.topbar nav { display: flex; gap: 20px; flex-wrap: wrap; }
-.topbar nav a { font-family: var(--mono); font-size: 13px; color: var(--muted); text-decoration: none; }
-.topbar nav a:hover { color: var(--accent); }
-.mark { font-family: var(--display); font-weight: 800; font-stretch: 112%; letter-spacing: -0.01em; }
+/* nav */
+nav { font-family: var(--sans); font-size: 14.5px; margin: 18px 0 28px; padding-block: 13px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: flex-end; }
+nav a { color: var(--body); }
+nav a[aria-current="page"] { color: var(--accent); font-weight: 600; }
 
-/* ---------- hero ---------- */
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 56px;
-  align-items: start;
-  padding-block: 56px 48px;
-}
-.hero h1 {
-  font-size: clamp(44px, 7vw, 84px);
-  font-weight: 850;
-  font-stretch: 116%;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  margin-block: 14px 22px;
-}
-.thesis {
-  font-family: var(--display);
-  font-size: clamp(21px, 2.4vw, 27px);
-  font-weight: 500;
-  font-stretch: 100%;
-  line-height: 1.3;
-  max-width: 30ch;
-  margin-bottom: 20px;
-}
-.thesis em { font-style: normal; color: var(--accent); }
-.bio { max-width: 60ch; color: var(--ink); }
-.links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 22px; font-family: var(--mono); font-size: 14px; }
+.eyebrow { font-family: var(--sans); font-size: 11.5px; font-weight: 600; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+h2.eyebrow { margin-top: 0; }
+.section-gap { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
 
-/* title block: an engineering-drawing style facts table */
-.titleblock {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border: 1.5px solid var(--ink);
-  margin-top: 30px;
-  background: var(--surface);
-}
-.titleblock div { padding: 9px 12px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.titleblock div:nth-child(3n) { border-right: 0; }
-.titleblock div:nth-last-child(-n+3) { border-bottom: 0; }
-.titleblock .label { font-size: 10.5px; display: block; }
-.titleblock span.v { font-family: var(--display); font-size: 15px; font-weight: 600; line-height: 1.3; }
+/* home grid */
+.grid { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 0 56px; align-items: start; }
+.photo { width: 100%; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 10px; overflow: hidden; background: var(--chip); margin-bottom: 26px; display: flex; align-items: center; justify-content: center; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .initials { font: 600 52px/1 var(--sans); color: var(--accent); letter-spacing: 0.02em; }
 
-/* flow instrument */
-.instrument {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  padding: 18px;
-}
-.instrument .frame {
-  aspect-ratio: 1 / 1;
-  width: 100%;
-  max-width: 100%;
-  background: var(--plate);
-  display: block;
-  image-rendering: auto;
-}
-.readout {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 14px;
-  font-family: var(--mono);
-  font-variant-numeric: tabular-nums;
-}
-.readout .t { font-size: 22px; color: var(--heat); font-weight: 500; }
-.scrub { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; margin-top: 8px; }
-.scrub .label { font-size: 11px; }
-input[type="range"] { width: 100%; accent-color: var(--heat); }
-.play {
-  font-family: var(--mono);
-  font-size: 13px;
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 6px 12px;
-  cursor: pointer;
-}
-.play:hover { background: var(--ink); color: var(--bg); }
-.instrument figcaption { font-size: 14.5px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+.news { list-style: none; margin: 0; padding: 0; font-family: var(--sans); font-size: 13.5px; line-height: 1.55; }
+.news li { display: flex; gap: 12px; padding-block: 8px; border-bottom: 1px solid var(--line); }
+.news li:first-child { border-top: 1px solid var(--line); }
+.news .date { flex-shrink: 0; width: 70px; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); padding-top: 2px; font-variant-numeric: tabular-nums; }
+.news .txt { color: var(--body); }
+.news b { color: var(--ink); font-weight: 600; }
 
-/* ---------- sections ---------- */
-section.block {
-  display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  gap: 32px;
-  padding-block: 44px;
-  border-top: 1px solid var(--rule);
-}
-section.block > .label { padding-top: 6px; }
-.stack { display: grid; gap: 40px; }
+.skills .cat { font-family: var(--sans); font-size: 14px; margin-bottom: 12px; line-height: 1.55; }
+.skills .cat strong { color: var(--ink); font-weight: 600; }
+.skills .cat span { color: var(--muted); }
 
-.project { display: grid; gap: 14px; }
-.project-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
-.project h3 { font-size: 30px; font-weight: 800; font-stretch: 110%; letter-spacing: -0.01em; }
-.chip {
-  font-family: var(--mono);
-  font-size: 11.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-}
-.chip.review { background: var(--accent-soft); }
-.project p { max-width: 68ch; }
-.specs {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-}
-.specs div { padding: 12px 14px 12px 0; }
-.specs strong {
-  display: block;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 22px;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-}
-.specs span { font-size: 14px; color: var(--muted); line-height: 1.4; display: block; }
-.plate { background: var(--plate); border: 1px solid var(--rule); padding: 10px; margin: 0; }
-.plate img { display: block; width: 100%; height: auto; }
-.plate figcaption { font-size: 14px; color: var(--plate-ink); padding-top: 8px; }
-.figs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+/* items: experience, education, publications */
+.item { margin: 0 0 28px; font-size: 15.5px; }
+.item .when { display: block; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.item .head { font-family: var(--sans); font-size: 16px; font-weight: 600; color: var(--ink); }
+.item .sub { color: var(--muted); font-style: italic; }
+.item ul { margin: 8px 0 0 18px; padding: 0; }
+.item li { margin-bottom: 4px; font-size: 15px; }
 
-.agenda { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 36px; }
-.agenda h3 { font-size: 19px; font-weight: 700; font-stretch: 105%; margin-bottom: 6px; display: flex; gap: 10px; align-items: baseline; }
-.agenda h3 .label { color: var(--accent); }
-.agenda p { font-size: 16px; color: var(--ink); }
+.pub { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; margin-bottom: 22px; font-size: 15.5px; }
+.pub .n { font-family: var(--sans); font-size: 13px; color: var(--muted); padding-top: 3px; }
+.pub .t { font-weight: 600; color: var(--ink); }
+.pub .venue { color: var(--muted); font-size: 14.5px; }
+.tag { display: inline-block; font-family: var(--sans); font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); background: var(--chip); border-radius: 4px; padding: 2px 7px; margin-right: 6px; vertical-align: 1px; }
+.note { font-family: var(--sans); font-size: 13px; color: var(--muted); }
 
-.pubs { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
-.pubs li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; }
-.pubs .tag { font-family: var(--mono); color: var(--accent); font-size: 14px; padding-top: 2px; }
-.pubs .title { font-weight: 600; }
-.pubs .meta { color: var(--muted); font-size: 15.5px; }
+/* research rows */
+.row { display: flex; gap: 28px; align-items: flex-start; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row .media { flex-shrink: 0; width: 260px; max-width: 100%; }
+.row .body { flex: 1; min-width: 0; }
+.row h3 { font-family: var(--sans); font-size: 17.5px; font-weight: 600; color: var(--ink); margin: 0 0 6px; line-height: 1.35; }
+.row .tech { font-family: var(--sans); font-size: 13px; color: var(--muted); }
+.figs { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 4px 0 12px; font-family: var(--sans); font-size: 13.5px; color: var(--muted); }
+.figs b { font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; margin-right: 4px; }
 
-.timeline { list-style: none; padding: 0; margin: 0; }
-.timeline li {
-  display: grid;
-  grid-template-columns: 130px minmax(0, 1fr);
-  gap: 16px;
-  padding-block: 16px;
-  border-bottom: 1px solid var(--rule);
-}
-.timeline li:first-child { padding-top: 0; }
-.timeline .when { font-family: var(--mono); font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 3px; }
-.timeline h3 { font-size: 18px; font-weight: 700; font-stretch: 105%; }
-.timeline p { font-size: 16px; color: var(--muted); }
+.sampler { border: 1px solid var(--line); border-radius: 8px; padding: 10px; background: var(--bg); }
+.sampler img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 4px; background: var(--plate); }
+.sampler .ctl { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-family: var(--sans); font-size: 11px; color: var(--muted); }
+.sampler input[type="range"] { flex: 1; min-width: 0; accent-color: var(--heat); }
+.sampler .read { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.sampler .t { font-family: var(--mono); font-size: 14px; color: var(--heat); font-variant-numeric: tabular-nums; }
+.sampler button { font-family: var(--sans); font-size: 12px; color: var(--accent); background: var(--chip); border: 0; border-radius: 5px; padding: 4px 10px; cursor: pointer; }
+.sampler button:hover { text-decoration: underline; }
+.caption { font-family: var(--sans); font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
 
-.contact { display: grid; gap: 14px; }
-.email-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.email { font-family: var(--mono); font-size: 18px; user-select: all; }
-.copy {
-  font-family: var(--mono);
-  font-size: 12.5px;
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 5px 10px;
-  cursor: pointer;
-}
-.copy:hover { background: var(--accent-soft); }
-footer { padding-top: 28px; border-top: 1px solid var(--rule); font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+.directions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 36px; }
+.directions h3 { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+.directions p { font-size: 15px; margin: 0; }
 
-@media (max-width: 860px) {
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 36px 32px; }
-  section.block { grid-template-columns: minmax(0, 1fr); gap: 14px; padding-block: 32px; }
-  .agenda { grid-template-columns: minmax(0, 1fr); }
-  .figs { grid-template-columns: minmax(0, 1fr); }
+/* footer */
+footer { font-family: var(--sans); margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: baseline; }
+footer .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13.5px; }
+footer .email { color: var(--ink); user-select: all; }
+footer .links a { color: var(--body); }
+footer .copy { margin-left: auto; color: var(--muted); font-size: 12.5px; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 820px) {
+  .wrap { padding-inline: 16px; padding-block: 24px 48px; }
+  .masthead { flex-direction: column; }
+  .threads, nav { justify-content: flex-start; }
+  h1 { font-size: 26px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .photo { max-width: 200px; }
+  .row { flex-direction: column; }
+  .row .media { width: 100%; max-width: 360px; }
+  .directions { grid-template-columns: minmax(0, 1fr); }
+  footer .copy { margin-left: 0; }
 }
-@media (max-width: 520px) {
-  .wrap { padding-inline: 16px; }
-  body { font-size: 16px; }
-  .titleblock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .titleblock div:nth-child(3n) { border-right: 1px solid var(--rule); }
-  .titleblock div:nth-child(2n) { border-right: 0; }
-  .titleblock div:nth-last-child(-n+3) { border-bottom: 1px solid var(--rule); }
-  .titleblock div:nth-last-child(-n+2) { border-bottom: 0; }
-  .timeline li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-  .project h3 { font-size: 26px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  * { scroll-behavior: auto !important; }
+@media (max-width: 480px) {
+  .thread { width: 70px; }
+  .bio-text p, .item li { text-align: left; }
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="topbar">
-    <span class="mark">R. Mandal</span>
-    <nav aria-label="Sections">
-      <a href="#research">Research</a>
-      <a href="#next">Next</a>
-      <a href="#publications">Publications</a>
-      <a href="#path">Path</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <header class="masthead">
+    <div>
+      <h1 id="name"></h1>
+      <p class="role" id="role"></p>
+    </div>
+    <div class="threads" id="threads" aria-label="Research interests"></div>
   </header>
 
-  <section class="hero" aria-labelledby="name">
-    <div>
-      <span class="label">PhD scholar · Applied Mechanics · IIT Delhi</span>
-      <h1 id="name">Rakesh Mandal</h1>
-      <p class="thesis">I build generative AI that designs parts which <em>still work after they are manufactured.</em></p>
-      <p class="bio">I'm a second-year PhD scholar at IIT Delhi, working with Prof. Souvik Chakraborty. I train flow-matching generative models that propose engineering structures in seconds, then use physics and robust optimisation to keep those designs reliable under manufacturing variation. Before my PhD, I spent three years as a production engineer at Hero MotoCorp, where I led a project that cut crankshaft rejections by 70%.</p>
-      <div class="links">
-        <a href="#contact">Email</a>
-        <a href="https://github.com/Rakesh-Mandal-1729" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://rakesh-mandal-1729.github.io/cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
-      </div>
-      <div class="titleblock" aria-label="Key facts">
-        <div><span class="label">Position</span><span class="v">PhD scholar, year 2</span></div>
-        <div><span class="label">Department</span><span class="v">Applied Mechanics</span></div>
-        <div><span class="label">Institute</span><span class="v">IIT Delhi</span></div>
-        <div><span class="label">Advisor</span><span class="v">Prof. Souvik Chakraborty</span></div>
-        <div><span class="label">Since</span><span class="v">July 2025</span></div>
-        <div><span class="label">Method</span><span class="v">Flow matching</span></div>
-      </div>
-    </div>
+  <nav id="nav" aria-label="Pages"></nav>
 
-    <figure class="instrument" style="margin:0">
-      <img class="frame" id="flowFrame" src="assets/flow_7.webp" width="360" height="360" alt="Optimised cantilever structure generated by TopoFlow">
-      <div class="readout">
-        <span class="label">TopoFlow sampler</span>
-        <span class="t" id="tValue">t = 0.00</span>
-      </div>
-      <div class="scrub">
-        <span class="label">noise</span>
-        <input type="range" id="tSlider" min="0" max="7" step="1" value="7" aria-label="Integration time, from noise at t equals 1 to design at t equals 0">
-        <span class="label">design</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap">
-        <button class="play" id="playBtn" type="button">Play 1 → 0</button>
-        <span class="label">8 snapshots of one ODE solve</span>
-      </div>
-      <figcaption>Drag the slider to integrate the learned flow from random noise (t&nbsp;=&nbsp;1) to an optimised cantilever layout (t&nbsp;=&nbsp;0). Classical SIMP optimisation reaches a similar layout only after many iterations of finite-element analysis.</figcaption>
-    </figure>
-  </section>
-
-  <section class="block" id="research" aria-labelledby="research-h">
-    <span class="label" id="research-h">Research</span>
-    <div class="stack">
-
-      <article class="project">
-        <div class="project-head">
-          <h3>TopoFlow</h3>
-          <span class="chip review">Under review · CMAME</span>
-        </div>
-        <p>One conditional flow-matching model for topology optimisation in both 2D and 3D. A U-Net velocity field, conditioned through Fourier features and FiLM, turns noise into structures for a given load and material budget, with no architectural changes between dimensions. Every design is checked by finite-element analysis.</p>
-        <div class="specs">
-          <div><strong>1.008</strong><span>median compliance ratio vs. classical SIMP (2D)</span></div>
-          <div><strong>25–100×</strong><span>lower cost than SIMP (2D)</span></div>
-          <div><strong>96.5%</strong><span>of 3D designs within 10% of the FEM reference</span></div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="block" id="next" aria-labelledby="next-h">
-    <span class="label" id="next-h">What's next</span>
-    <div class="agenda">
-      <div>
-        <h3><span class="label">Objective 1</span>Reliability-aware design</h3>
-        <p>Move from mean-and-variance objectives to explicit limits on the probability of failure, and unify robust and reliability-based design.</p>
-      </div>
-      <div>
-        <h3><span class="label">Objective 2</span>Efficient generation</h3>
-        <p>Cut the compute and energy per design with few-step flows and energy-efficient, including spiking, generative models.</p>
-      </div>
-      <div>
-        <h3><span class="label">Objective 3</span>Multimodal design</h3>
-        <p>Let engineers state requirements in language and sketches, with a human in the loop and hard constraints kept intact.</p>
-      </div>
-      <div>
-        <h3><span class="label">Objective 4</span>Industrial applications</h3>
-        <p>Take the framework from benchmarks to production-scale components, with finite-element verification of every design.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="publications" aria-labelledby="pubs-h">
-    <span class="label" id="pubs-h">Publications</span>
-    <ol class="pubs">
-      <li>
-        <span class="tag">J1</span>
+  <main>
+    <!-- Home -->
+    <section data-view="home">
+      <div class="grid">
         <div>
-          <div class="title">A Conditional Flow-Matching Framework for Generative Topology Optimization in Two and Three Dimensions</div>
-          <div class="meta"><strong>R. Mandal</strong>*, A. P. Padhi*, R. Nayek, A. Dasgupta, S. Chakraborty. Under review, <em>Computer Methods in Applied Mechanics and Engineering</em>. *Equal contribution.</div>
+          <div class="photo" id="photo"></div>
+          <h2 class="eyebrow">News</h2>
+          <ul class="news" id="news"></ul>
         </div>
-      </li>
-    </ol>
-  </section>
-
-  <section class="block" id="path" aria-labelledby="path-h">
-    <span class="label" id="path-h">Path</span>
-    <ol class="timeline">
-      <li>
-        <span class="when">2025 – now</span>
         <div>
-          <h3>PhD, Applied Mechanics, IIT Delhi</h3>
-          <p>Direct PhD after B.Tech. Thesis: multimodal, robust, sustainable and reliability-aware generative design.</p>
+          <div class="bio-text" id="about"></div>
+          <div class="section-gap skills">
+            <h2 class="eyebrow">Skills</h2>
+            <div id="skills"></div>
+          </div>
         </div>
-      </li>
-      <li>
-        <span class="when">2022 – 2025</span>
-        <div>
-          <h3>Production engineer, Hero MotoCorp</h3>
-          <p>Halol plant. Led the induction-hardening project that reduced crankshaft rejections by 70%; GreenCo pillar head.</p>
-        </div>
-      </li>
-      <li>
-        <span class="when">2018 – 2022</span>
-        <div>
-          <h3>B.Tech., Mechanical Engineering, NIT Durgapur</h3>
-          <p>CGPA 8.24/10. Final-year project on nonlinear dynamics in IC engines; powertrain head, SAE BAJA team.</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section class="block" id="contact" aria-labelledby="contact-h">
-    <span class="label" id="contact-h">Contact</span>
-    <div class="contact">
-      <div class="email-row">
-        <span class="email" id="emailText">rakesh.khantra@gmail.com</span>
-        <button class="copy" id="copyBtn" type="button">Copy</button>
       </div>
-      <p>Department of Applied Mechanics, IIT Delhi, Hauz Khas, New Delhi 110016 · <a href="https://github.com/Rakesh-Mandal-1729" target="_blank" rel="noopener">GitHub</a></p>
-    </div>
-  </section>
+    </section>
 
-  <footer>Last updated October 2026</footer>
+    <!-- Research -->
+    <section data-view="research" hidden>
+      <h2 class="eyebrow">Research</h2>
+      <div class="bio-text" id="research-intro"></div>
+      <div id="projects" style="margin-top:28px"></div>
+      <div class="section-gap">
+        <h2 class="eyebrow">Directions I am pursuing</h2>
+        <div class="directions" id="directions"></div>
+      </div>
+      <div class="section-gap">
+        <h2 class="eyebrow">Earlier projects</h2>
+        <div id="earlier"></div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section data-view="publications" hidden>
+      <h2 class="eyebrow">Publications</h2>
+      <div id="pubs"></div>
+      <p class="note">* Equal contribution.</p>
+    </section>
+
+    <!-- Experience -->
+    <section data-view="experience" hidden>
+      <h2 class="eyebrow">Experience</h2>
+      <div id="experience"></div>
+      <div class="section-gap">
+        <h2 class="eyebrow">Education</h2>
+        <div id="education"></div>
+      </div>
+    </section>
+
+    <!-- Bio -->
+    <section data-view="bio" hidden>
+      <h2 class="eyebrow">Bio</h2>
+      <div class="bio-text" id="bio" style="max-width:720px"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links" id="links"></div>
+    <div class="copy" id="copy"></div>
+  </footer>
 </div>
 
 <script>
+/* =====================================================================
+   EDIT YOUR CONTENT HERE. Everything on the site comes from this object.
+   Rule: list only published or under-review work. Keep manuscripts in
+   preparation off this public site.
+   ===================================================================== */
+var SITE = {
+  name: "Rakesh Mandal",
+  role: "PhD Scholar · Applied Mechanics · IIT Delhi",
+  // Put a photo at assets/profile.jpg and set photo: "assets/profile.jpg"
+  photo: "",
+  initials: "RM",
+
+  threads: [
+    { label: "Generative Design", icon: "spark" },
+    { label: "Flow Matching", icon: "flow" },
+    { label: "Topology Optimization", icon: "truss" },
+    { label: "Design under Uncertainty", icon: "bell" },
+    { label: "Neural Surrogates", icon: "net" },
+    { label: "Multimodal AI", icon: "chat" }
+  ],
+
+  about: [
+    "I am a PhD scholar in the <a href='https://am.iitd.ac.in/' target='_blank' rel='noopener'>Department of Applied Mechanics, IIT Delhi</a>, working with Prof. Souvik Chakraborty. My research is organised around one question: <i>how can generative AI design engineering parts that still perform once they are manufactured?</i>",
+    "Classical design optimisation is accurate but slow, and it optimises an ideal geometry that never leaves the factory. I train flow-matching generative models that learn the space of good designs and produce new structures in seconds, and I use physics and robust optimisation to keep those designs reliable under manufacturing variation.",
+    "I came to this question from the shop floor. Before my PhD, I spent three years as a production engineer at Hero MotoCorp, where I led a project that cut crankshaft rejections by 70%. That experience is why I treat manufacturing variation as a design requirement from the first step.",
+    "I am glad to talk about generative design, flow matching and diffusion models, topology optimisation, and AI for engineering. My email is at the bottom of this page."
+  ],
+
+  // Newest first. Use "Mon YYYY" when you know the month.
+  news: [
+    { date: "2026", text: "<b>TopoFlow</b>, conditional flow matching for 2D and 3D topology optimisation, is under review at <i>CMAME</i>." },
+    { date: "Jul 2025", text: "Started my <b>PhD</b> (direct) in the Department of Applied Mechanics, IIT Delhi." },
+    { date: "2023", text: "Led the project that cut crankshaft rejections by <b>70%</b> at Hero MotoCorp, Halol." },
+    { date: "Jul 2022", text: "Joined <b>Hero MotoCorp</b> as a Graduate Engineer Trainee." },
+    { date: "2022", text: "Graduated with a <b>B.Tech.</b> in Mechanical Engineering from NIT Durgapur." },
+    { date: "2021", text: "Technical Head, Powertrain, <b>Team NDORS</b> (SAE BAJA), NIT Durgapur." }
+  ],
+
+  skills: [
+    { cat: "Programming", items: "Python, MATLAB, LaTeX, Git, Linux" },
+    { cat: "ML frameworks", items: "PyTorch (mixed-precision GPU training), NumPy, SciPy, pandas, trimesh, scikit-image, Weights & Biases" },
+    { cat: "Generative & scientific ML", items: "Flow matching, diffusion models, 2D/3D U-Nets, FiLM conditioning, classifier-free guidance, neural operators, Bayesian optimisation" },
+    { cat: "Computational mechanics", items: "Topology optimisation (SIMP), finite-element analysis, robust design optimisation, uncertainty quantification" },
+    { cat: "CAD", items: "CATIA, SolidWorks, AutoCAD" }
+  ],
+
+  researchIntro: [
+    "Engineering design still relies on optimisation that restarts from scratch for every new load case or material budget, and it usually ignores how parts vary when they are made. I work on generative models that amortise this cost: they learn what good designs look like and propose new ones in a single pass, with physics checking every result."
+  ],
+
+  projects: [
+    {
+      title: "TopoFlow: conditional flow matching for topology optimisation in 2D and 3D",
+      status: "Under review · CMAME",
+      text: "One conditional flow-matching model handles both 2D image and 3D voxel design domains. A U-Net velocity field, conditioned through Fourier features and FiLM, turns noise into structures for a given load and material budget, without architectural changes between dimensions. Every generated design is checked by finite-element analysis.",
+      figs: [["1.008", "median compliance ratio vs. SIMP (2D)"], ["25–100×", "lower cost than SIMP (2D)"], ["96.5%", "of 3D designs within 10% of FEM reference"]],
+      tech: "PyTorch · U-Net · FiLM · Fourier features · SIMP · finite-element verification",
+      sampler: true
+    }
+  ],
+
+  directions: [
+    { title: "Reliability-aware design", text: "Explicit limits on the probability of failure, unifying robust and reliability-based design." },
+    { title: "Efficient generation", text: "Fewer integration steps and energy-efficient, including spiking, generative models." },
+    { title: "Multimodal design", text: "Requirements stated in language and sketches, with a human in the loop and hard constraints kept intact." },
+    { title: "Industrial applications", text: "Production-scale components, with finite-element verification of every design." }
+  ],
+
+  earlier: [
+    { when: "B.Tech. project · NIT Durgapur", head: "Observing and modelling nonlinear dynamics in an internal combustion engine", text: "Final-year project with Prof. Sirshendu Mondal." },
+    { when: "Mini project · NIT Durgapur", head: "A cellular-automaton model of particle motion and its applications", text: "With Prof. Sirshendu Mondal." },
+    { when: "2020 – 2021 · SAE BAJA", head: "Off-road vehicle powertrain, Team NDORS", text: "Team member at SAE BAJA 2020 (Pithampur, Indore); Technical Head of the powertrain department in 2021." }
+  ],
+
+  publications: [
+    {
+      title: "A Conditional Flow-Matching Framework for Generative Topology Optimization in Two and Three Dimensions",
+      authors: "<b>Rakesh Mandal</b>*, Arya Prakash Padhi*, Rajdip Nayek, Agnimitra Dasgupta, Souvik Chakraborty",
+      venue: "Computer Methods in Applied Mechanics and Engineering",
+      tag: "Journal · Under review",
+      link: ""
+    }
+  ],
+
+  experience: [
+    {
+      when: "Jul 2025 – Present", head: "Doctoral Researcher", sub: "Department of Applied Mechanics, IIT Delhi",
+      points: [
+        "Generative AI for engineering design: flow-matching models, neural surrogates and robust optimisation.",
+        "Built TopoFlow, a single conditional flow-matching model for 2D and 3D topology optimisation (under review)."
+      ]
+    },
+    {
+      when: "Jul 2022 – 2025", head: "Graduate Engineer Trainee (Assistant Manager role), Production", sub: "Hero MotoCorp Ltd., Halol Plant, Gujarat",
+      points: [
+        "Led the team that reduced crankshaft rejections in the induction-hardening operation by 70%.",
+        "Planned daily production and manpower; ran cost-optimisation and rejection-reduction projects.",
+        "Pillar head of the GreenCo (green company) initiative; deputy leader of the Development Management pillar of TPM."
+      ]
+    },
+    {
+      when: "Summer internship", head: "Industrial trainee", sub: "MSME-CTTC Bhubaneswar",
+      points: ["Two weeks of turning, milling, drilling and CNC machining; built a hand-injection mould; CATIA training."]
+    }
+  ],
+
+  education: [
+    { when: "2025 – Present", head: "PhD (Direct), Applied Mechanics", sub: "Indian Institute of Technology Delhi", points: ["Advisor: Prof. Souvik Chakraborty. Thesis area: robust, reliable, sustainable and multimodal generative design."] },
+    { when: "2018 – 2022", head: "B.Tech., Mechanical Engineering", sub: "National Institute of Technology Durgapur", points: ["CGPA 8.24/10 (final-semester SGPA 9.44)."] }
+  ],
+
+  bio: [
+    "I am Rakesh. I grew up in West Bengal, and I have always liked understanding how machines work and why they fail. That curiosity took me to mechanical engineering at NIT Durgapur, where I led the powertrain team of our SAE BAJA off-road vehicle and wrote my final-year thesis on nonlinear dynamics in internal combustion engines.",
+    "After graduating in 2022, I joined Hero MotoCorp's Halol plant as a production engineer. On the shop floor I learned how small variations in a process turn a good design into a rejected part. I led the team that reduced crankshaft rejections in induction hardening by 70%, and I headed the plant's GreenCo sustainability pillar.",
+    "In 2025, I returned to research through IIT Delhi's direct PhD programme. I want design tools that think about manufacturing from the start: generative models that propose high-performing structures in seconds and keep them reliable once they are made.",
+    "The future I am working towards: an engineer states what a part must do, in numbers, words or a sketch, and receives designs that perform, survive real manufacturing and cost little to compute. I also care about access. Small manufacturers build much of India's engineering output, and they should be able to use these tools too.",
+    "Outside research, I play cricket and volleyball, and I run; I have completed a 10 km run at the Vadodara Marathon.",
+    "If you work on generative design, scientific machine learning or manufacturing, I would be glad to hear from you."
+  ],
+
+  email: "rakesh.khantra@gmail.com",
+  links: [
+    { label: "GitHub", href: "https://github.com/Rakesh-Mandal-1729" },
+    { label: "CV (PDF)", href: "https://rakesh-mandal-1729.github.io/cv.pdf" }
+  ]
+};
+
+/* ============================ rendering ============================ */
 (function () {
-  var slider = document.getElementById('tSlider');
-  var frame = document.getElementById('flowFrame');
-  var tValue = document.getElementById('tValue');
-  var playBtn = document.getElementById('playBtn');
-  var frames = [];
-  for (var i = 0; i < 8; i++) { var im = new Image(); im.src = 'assets/flow_' + i + '.webp'; frames.push(im.src); }
-
-  function show(i) {
-    frame.src = frames[i];
-    var t = 1 - i / 7;
-    tValue.textContent = 't = ' + t.toFixed(2);
-    frame.alt = i === 7 ? 'Optimised cantilever structure generated by TopoFlow'
-                        : 'TopoFlow sample partway from noise to structure at t = ' + t.toFixed(2);
+  var ICONS = {
+    spark: '<path d="M12 3.5l1.9 5 5 1.9-5 1.9-1.9 5-1.9-5-5-1.9 5-1.9z"/><path d="M18.5 15.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>',
+    flow: '<path d="M3 8c3-3 6 3 9 0s6-3 9 0"/><path d="M3 15c3-3 6 3 9 0s6-3 9 0"/><path d="M18 5.5l3 2.5-3 2.5"/><path d="M18 12.5l3 2.5-3 2.5"/>',
+    truss: '<path d="M3 18h18M5 6h14"/><path d="M3 18l2-12 4 12 4-12 4 12 2-12 2 12"/>',
+    bell: '<path d="M3 19h18"/><path d="M3 18c3.5 0 4.5-12 9-12s5.5 12 9 12"/><path d="M12 6v13" stroke-dasharray="2 2"/>',
+    net: '<circle cx="5" cy="7" r="1.8"/><circle cx="5" cy="17" r="1.8"/><circle cx="12" cy="5" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="12" cy="19" r="1.8"/><circle cx="19" cy="12" r="1.8"/><path d="M6.7 7.6l3.6 3.6M6.7 6.4l3.6-1M6.7 16.4l3.6-3.6M6.7 17.6l3.6 1M13.8 5.8l3.6 5.4M13.8 12h3.4M13.8 18.2l3.6-5.4"/>',
+    chat: '<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>'
+  };
+  function svg(name) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[name] + '</svg>';
   }
-  slider.addEventListener('input', function () { show(+slider.value); });
+  function $(id) { return document.getElementById(id); }
+  function paras(list) { return list.map(function (p) { return '<p>' + p + '</p>'; }).join(''); }
+  function item(x) {
+    return '<div class="item"><span class="when">' + x.when + '</span><div class="head">' + x.head + '</div>' +
+      (x.sub ? '<div class="sub">' + x.sub + '</div>' : '') +
+      (x.points && x.points.length ? '<ul>' + x.points.map(function (p) { return '<li>' + p + '</li>'; }).join('') + '</ul>' : '') +
+      (x.text ? '<div>' + x.text + '</div>' : '') + '</div>';
+  }
 
-  var timer = null;
-  playBtn.addEventListener('click', function () {
-    if (timer) { clearInterval(timer); timer = null; }
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { slider.value = 7; show(7); return; }
-    var i = 0; slider.value = 0; show(0);
-    timer = setInterval(function () {
-      i += 1; slider.value = i; show(i);
-      if (i >= 7) { clearInterval(timer); timer = null; }
-    }, 380);
-  });
+  $('name').textContent = SITE.name;
+  $('role').textContent = SITE.role;
+  $('threads').innerHTML = SITE.threads.map(function (t) {
+    return '<div class="thread"><div class="tile">' + svg(t.icon) + '</div><span>' + t.label + '</span></div>';
+  }).join('');
 
-  var copyBtn = document.getElementById('copyBtn');
-  var emailText = document.getElementById('emailText');
-  copyBtn.addEventListener('click', function () {
-    var done = function () { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1600); };
-    var fallback = function () {
-      var r = document.createRange(); r.selectNodeContents(emailText);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      copyBtn.textContent = 'Selected: press Ctrl+C';
+  $('photo').innerHTML = SITE.photo
+    ? '<img src="' + SITE.photo + '" alt="Portrait of ' + SITE.name + '">'
+    : '<span class="initials" aria-hidden="true">' + SITE.initials + '</span>';
+  $('news').innerHTML = SITE.news.map(function (n) {
+    return '<li><span class="date">' + n.date + '</span><span class="txt">' + n.text + '</span></li>';
+  }).join('');
+  $('about').innerHTML = paras(SITE.about);
+  $('skills').innerHTML = SITE.skills.map(function (s) {
+    return '<div class="cat"><strong>' + s.cat + ':</strong> <span>' + s.items + '</span></div>';
+  }).join('');
+
+  $('research-intro').innerHTML = paras(SITE.researchIntro);
+  $('projects').innerHTML = SITE.projects.map(function (p) {
+    var media = p.sampler
+      ? '<div class="media"><div class="sampler">' +
+          '<img id="flowFrame" src="assets/flow_7.webp" width="360" height="360" alt="Optimised cantilever structure generated by TopoFlow">' +
+          '<div class="ctl"><span>noise</span><input type="range" id="tSlider" min="0" max="7" step="1" value="7" aria-label="Integration time from noise, t equals 1, to design, t equals 0"><span>design</span></div>' +
+          '<div class="read"><span class="t" id="tValue">t = 0.00</span><button type="button" id="playBtn">Play</button></div>' +
+        '</div><div class="caption">Drag to integrate the learned flow from noise (t = 1) to an optimised cantilever (t = 0).</div></div>'
+      : '';
+    return '<div class="row">' + media + '<div class="body"><h3>' + p.title + '</h3>' +
+      '<div style="margin-bottom:8px"><span class="tag">' + p.status + '</span></div>' +
+      '<p>' + p.text + '</p>' +
+      '<div class="figs">' + p.figs.map(function (f) { return '<span><b>' + f[0] + '</b>' + f[1] + '</span>'; }).join('') + '</div>' +
+      '<div class="tech">' + p.tech + '</div></div></div>';
+  }).join('');
+  $('directions').innerHTML = SITE.directions.map(function (d) {
+    return '<div><h3>' + d.title + '</h3><p>' + d.text + '</p></div>';
+  }).join('');
+  $('earlier').innerHTML = SITE.earlier.map(item).join('');
+
+  $('pubs').innerHTML = SITE.publications.map(function (p, i) {
+    var title = p.link ? '<a class="t" href="' + p.link + '" target="_blank" rel="noopener">' + p.title + '</a>' : '<span class="t">' + p.title + '</span>';
+    return '<div class="pub"><span class="n">' + (i + 1) + '.</span><div>' + title + '<br>' + p.authors +
+      '<br><span class="tag">' + p.tag + '</span><span class="venue"><i>' + p.venue + '</i></span></div></div>';
+  }).join('');
+
+  $('experience').innerHTML = SITE.experience.map(item).join('');
+  $('education').innerHTML = SITE.education.map(item).join('');
+  $('bio').innerHTML = paras(SITE.bio);
+
+  $('links').innerHTML = '<span class="email">' + SITE.email + '</span>' + SITE.links.map(function (l) {
+    return '<a href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>';
+  }).join('');
+  $('copy').textContent = '© ' + new Date().getFullYear() + ' ' + SITE.name;
+
+  /* views (hash navigation: #research, #publications, ...) */
+  var VIEWS = [['home', 'Home'], ['research', 'Research'], ['publications', 'Publications'], ['experience', 'Experience'], ['bio', 'Bio']];
+  $('nav').innerHTML = VIEWS.map(function (v) { return '<a href="#' + v[0] + '" data-link="' + v[0] + '">' + v[1] + '</a>'; }).join('');
+  function show(name, scroll) {
+    if (!VIEWS.some(function (v) { return v[0] === name; })) name = 'home';
+    document.querySelectorAll('[data-view]').forEach(function (s) { s.hidden = s.getAttribute('data-view') !== name; });
+    document.querySelectorAll('[data-link]').forEach(function (a) {
+      if (a.getAttribute('data-link') === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    if (scroll) window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1), true); });
+  show(location.hash.slice(1), false);
+
+  /* TopoFlow sampler */
+  var slider = $('tSlider');
+  if (slider) {
+    var frame = $('flowFrame'), tValue = $('tValue'), frames = [], timer = null;
+    for (var i = 0; i < 8; i++) { var im = new Image(); im.src = 'assets/flow_' + i + '.webp'; frames.push(im.src); }
+    var set = function (k) {
+      frame.src = frames[k];
+      var t = 1 - k / 7;
+      tValue.textContent = 't = ' + t.toFixed(2);
+      frame.alt = k === 7 ? 'Optimised cantilever structure generated by TopoFlow' : 'TopoFlow sample partway from noise to structure at t = ' + t.toFixed(2);
     };
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(emailText.textContent).then(done, fallback);
-      } else { fallback(); }
-    } catch (e) { fallback(); }
-  });
+    slider.addEventListener('input', function () { set(+slider.value); });
+    $('playBtn').addEventListener('click', function () {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { slider.value = 7; set(7); return; }
+      var k = 0; slider.value = 0; set(0);
+      timer = setInterval(function () { k += 1; slider.value = k; set(k); if (k >= 7) { clearInterval(timer); timer = null; } }, 380);
+    });
+  }
 })();
 </script>
 </body>
