@@ -65,6 +65,8 @@ h2.eyebrow { margin-top: 0; }
 .grid { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 0 56px; align-items: start; }
 .photo { width: 100%; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 10px; overflow: hidden; background: var(--chip); margin-bottom: 26px; display: flex; align-items: center; justify-content: center; }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bio-grid { display: grid; grid-template-columns: minmax(0, 720px) 240px; gap: 0 48px; align-items: start; }
+.bio-grid .photo { margin-bottom: 0; }
 .photo .initials { font: 600 52px/1 var(--sans); color: var(--accent); letter-spacing: 0.02em; }
 
 .news { list-style: none; margin: 0; padding: 0; font-family: var(--sans); font-size: 13.5px; line-height: 1.55; }
@@ -133,6 +135,8 @@ footer .copy { margin-left: auto; color: var(--muted); font-size: 12.5px; }
   h1 { font-size: 26px; }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .photo { max-width: 200px; }
+  .bio-grid { grid-template-columns: minmax(0, 1fr); }
+  .bio-grid .photo { order: -1; margin-bottom: 22px; }
   .row { flex-direction: column; }
   .row .media { width: 100%; max-width: 360px; }
   .directions { grid-template-columns: minmax(0, 1fr); }
@@ -200,7 +204,7 @@ footer .copy { margin-left: auto; color: var(--muted); font-size: 12.5px; }
     <!-- Experience -->
     <section data-view="experience" hidden>
       <h2 class="eyebrow">Experience</h2>
-      <div id="experience"></div>
+      <div id="experience-list"></div>
       <div class="section-gap">
         <h2 class="eyebrow">Education</h2>
         <div id="education"></div>
@@ -210,7 +214,10 @@ footer .copy { margin-left: auto; color: var(--muted); font-size: 12.5px; }
     <!-- Bio -->
     <section data-view="bio" hidden>
       <h2 class="eyebrow">Bio</h2>
-      <div class="bio-text" id="bio" style="max-width:720px"></div>
+      <div class="bio-grid">
+        <div class="bio-text" id="bio-body"></div>
+        <div class="photo" id="bio-photo"></div>
+      </div>
     </section>
   </main>
 
@@ -231,6 +238,8 @@ var SITE = {
   role: "PhD Scholar · Applied Mechanics · IIT Delhi",
   // Portrait: assets/profile.jpg (4:5). Set photo: "" to show the initials instead.
   photo: "assets/profile.jpg",
+  // Second portrait beside the Bio text. Set to "" to hide it.
+  bioPhoto: "assets/profile_bio.jpg",
   initials: "RM",
 
   threads: [
@@ -416,9 +425,11 @@ var SITE = {
       '<br><span class="tag">' + p.tag + '</span><span class="venue"><i>' + p.venue + '</i></span></div></div>';
   }).join('');
 
-  $('experience').innerHTML = SITE.experience.map(item).join('');
+  $('experience-list').innerHTML = SITE.experience.map(item).join('');
   $('education').innerHTML = SITE.education.map(item).join('');
-  $('bio').innerHTML = paras(SITE.bio);
+  $('bio-body').innerHTML = paras(SITE.bio);
+  if (SITE.bioPhoto) $('bio-photo').innerHTML = '<img src="' + SITE.bioPhoto + '" alt="' + SITE.name + '" loading="lazy">';
+  else $('bio-photo').hidden = true;
 
   $('links').innerHTML = '<span class="email">' + SITE.email + '</span>' + SITE.links.map(function (l) {
     return '<a href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>';
